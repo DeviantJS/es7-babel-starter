@@ -1,0 +1,107 @@
+{
+  "name": "es7-babel-starter",
+  "version": "1.0.0",
+  "description": "Author libraries in ES2016 / ES7 for Node.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "start": "npm run serve:dev src",
+    "serve:dev": "nodemon $2 --exec babel-node",
+    "debug": "nodemon $2 --exec babel-node --debug",
+    "build:dist": "babel -s true src -d dist",
+    "serve:dist": "nodemon dist/index.js",
+    "clean": "rimraf .nyc_output/ coverage/ dist/",
+    "benchmark": "babel-node benchmark",
+    "benchmark:watch": "nodemon $2 --exec babel-node benchmark",
+    "lint": "eslint src test benchmark",
+    "test": "npm run test:coverage",
+    "test:base": "mocha -c -S -R spec 'tests' --compilers js:babel-register --check-leaks",
+    "test:coverage": "cross-env NODE_ENV=test nyc npm run test:base",
+    "test:ci": "mocha -c -S -R spec 'tests' --compilers js:babel-register --check-leaks --reporter mocha-junit-reporter",
+    "test:ci:coverage": "cross-env NODE_ENV=test nyc npm run test:ci",
+    "test:watch": "mocha -w -c -S -R spec 'tests' --compilers js:babel-register --check-leaks",
+    "test:reporter-list": "mocha -c -S -R list 'tests' --compilers js:babel-register --check-leaks",
+    "test:export": "mocha -S -R mochawesome 'tests' --compilers js:babel-register --reporter-options reportDir=reports --check-leaks",
+    "report-coverage": "nyc report --reporter=lcov",
+    "report-codeclimate": "codeclimate-test-reporter < coverage/lcov.info",
+    "scan:security": "nsp check",
+    "scan:updates": "ncu",
+    "setenv:dev": "npm config set production false",
+    "setenv:prod": "npm config set production true",
+    "pre-release": "npm run setenv:prod && npm run clean && npm run build:dist && npm run lint && npm run scan:security && npm run test:ci:coverage && npm run report-coverage",
+    "release": "standard-version",
+    "post-release": "greenkeeper-postpublish && npm run setenv:dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeviantJS/es7-babel-starter.git"
+  },
+  "author": "Joshua Wiens <d3viant0ne> (https://github.com/d3viant0ne)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DeviantJS/es7-babel-starter/issues"
+  },
+  "homepage": "https://github.com/DeviantJS/es7-babel-starter#readme",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-node-debug": "^2.0.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-babili": "0.0.5",
+    "babel-preset-es2015-node6": "^0.3.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "babili": "0.0.7",
+    "benchmark": "^2.1.1",
+    "chai": "^3.5.0",
+    "codeclimate-test-reporter": "^0.4.0",
+    "commitizen": "^2.8.6",
+    "conventional-changelog": "^1.1.0",
+    "cross-env": "^3.1.3",
+    "cz-conventional-changelog": "^1.2.0",
+    "eslint": "^3.9.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.3.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "ghooks": "^1.3.2",
+    "greenkeeper-postpublish": "^1.0.1",
+    "microtime": "^2.1.1",
+    "mocha": "^3.1.2",
+    "mocha-junit-reporter": "^1.12.1",
+    "mochawesome": "^1.5.3",
+    "nodemon": "^1.11.0",
+    "npm-check-updates": "^2.8.6",
+    "nsp": "^2.6.2",
+    "nyc": "^8.3.2",
+    "rimraf": "^2.5.4",
+    "standard-changelog": "^0.0.1",
+    "standard-version": "^3.0.0"
+  },
+  "dependencies": {},
+  "babel": {
+    "presets": [
+      "es2015-node6",
+      "stage-0",
+      "babili"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "plugins": [
+      "standard",
+      "promise"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "keywords": [
+    "babel",
+    "starter",
+    "boilerplate",
+    "node",
+    "ES7",
+    "ECMAScript 7",
+    "ECMAScript 2016"
+  ]
+}
