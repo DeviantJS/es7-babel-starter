@@ -1,0 +1,41 @@
+# circle.yml
+machine:
+  services:
+    - docker
+  node:
+    version: 6.9.1
+
+dependencies:
+  override:
+      - npm install
+      - npm run build:dist
+      - docker info
+      - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
+      - docker build -t d3vaint0ne/node-module-boilerplate .
+      - mkdir -p ~/docker; docker save d3vaint0ne/node-module-boilerplate > ~/docker/image.tar
+
+test:
+  override:
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - npm run lint
+    - npm run scan:security
+    - npm run test:ci:coverage
+    - npm run report-coverage
+    - npm run report-codeclimate
+  post:
+    - find . -type f -regex ".*/test-results.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+
+# Docker Hub Deployment by branch
+# Docker Creds go into your Circle EnvVars Config
+# deployment:
+#   hub:
+#     branch: develop
+#     commands:
+#       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+#       - docker tag d3vaint0ne/node-module-boilerplate d3vaint0ne/node-module-boilerplate:$CIRCLE_BRANCH
+#       - docker push d3vaint0ne/node-module-boilerplate
+
+general:
+  artifacts:
+    - "coverage"
+    - $CIRCLE_TEST_REPORTS/junit
