@@ -11,16 +11,16 @@ const b = 2;
 let result = 0;
 
 suite
-  .add('sum module addition with 2 numbers', function () {
+  .add('sum module addition with 2 numbers', function() {
     result = sum(a, b);
   })
-  .add('sum module addition with 2 numbers', function () {
+  .add('sum module addition with 2 numbers', function() {
     result = a + b;
   })
-  .on('cycle', function (event) {
+  .on('cycle', function(event) {
     console.log(String(event.target));
   })
-  .on('complete', function () {
+  .on('complete', function() {
     console.log('Fastest is ' + this.filter('fastest').map('name'));
   })
   .run({ 'async': true });
