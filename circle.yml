@@ -23,7 +23,7 @@ test:
     - npm run report-coverage
   post:
     - find . -type f -regex ".*/test-results.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
-    - bash <(curl -s https://codecov.io/bash) -t 4a51aa9f-b4df-42d4-8b10-20490ef45e9a
+    - bash <(curl -s https://codecov.io/bash)
 
 # Docker Hub Deployment by branch
 # Docker Creds go into your Circle EnvVars Config
