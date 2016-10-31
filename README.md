@@ -7,6 +7,8 @@
 
 > &nbsp;&nbsp;**Code Issues:** &nbsp;&nbsp;[![Issue Count](https://codeclimate.com/github/DeviantJS/es7-babel-starter/badges/issue_count.svg)](https://codeclimate.com/github/DeviantJS/es7-babel-starter)
 
+
+### Contents
 - [Development Experience](#development-experience)
 - [Usage](#usage)
 - [Testing](#testing)
