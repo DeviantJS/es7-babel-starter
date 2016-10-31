@@ -64,9 +64,9 @@ COPY ./dist /var/www/app/current
 #COPY ./.docker/${APP_ENV}/pm2/processes.json /var/www/app/current
 COPY ./process.yml /var/www/app/current
 
-# ENV KEYMETRICS_SECRET iecf31zkg0ux45m
-# ENV KEYMETRICS_PUBLIC a6eyiuoiakasf70
-# ENV INSTANCE_NAME "emx-microservice-seed.easymetrics.com"
+# ENV KEYMETRICS_SECRET
+# ENV KEYMETRICS_PUBLIC
+# ENV INSTANCE_NAME ""
 
 #Expose the ports
 EXPOSE 80 443 5000 43554

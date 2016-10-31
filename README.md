@@ -1,4 +1,11 @@
 ## ES7 - Babel Library Boilerplate
+> &nbsp;&nbsp;**Build Status (#master):** &nbsp;&nbsp;[![CircleCI](https://circleci.com/gh/DeviantJS/es7-babel-starter.svg?style=svg)](https://circleci.com/gh/DeviantJS/es7-babel-starter)
+
+> &nbsp;&nbsp;**Coverage (#master):** &nbsp;&nbsp;[![codecov](https://codecov.io/gh/DeviantJS/es7-babel-starter/branch/master/graph/badge.svg)](https://codecov.io/gh/DeviantJS/es7-babel-starter)
+
+> &nbsp;&nbsp;**Code Quality Score:** &nbsp;&nbsp;[![Code Climate](https://codeclimate.com/github/DeviantJS/es7-babel-starter/badges/gpa.svg)](https://codeclimate.com/github/DeviantJS/es7-babel-starter)
+
+> &nbsp;&nbsp;**Code Issues:** &nbsp;&nbsp;[![Issue Count](https://codeclimate.com/github/DeviantJS/es7-babel-starter/badges/issue_count.svg)](https://codeclimate.com/github/DeviantJS/es7-babel-starter)
 
 - [Development Experience](#development-experience)
 - [Usage](#usage)

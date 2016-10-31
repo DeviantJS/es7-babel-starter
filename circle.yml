@@ -11,8 +11,8 @@ dependencies:
       - npm run build:dist
       - docker info
       - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
-      - docker build -t d3vaint0ne/node-module-boilerplate .
-      - mkdir -p ~/docker; docker save d3vaint0ne/node-module-boilerplate > ~/docker/image.tar
+      - docker build -t deviantjs/es7-babel-starter .
+      - mkdir -p ~/docker; docker save deviantjs/es7-babel-starter > ~/docker/image.tar
 
 test:
   override:
@@ -21,9 +21,9 @@ test:
     - npm run scan:security
     - npm run test:ci:coverage
     - npm run report-coverage
-    - npm run report-codeclimate
   post:
     - find . -type f -regex ".*/test-results.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+    - bash <(curl -s https://codecov.io/bash) -t 4a51aa9f-b4df-42d4-8b10-20490ef45e9a
 
 # Docker Hub Deployment by branch
 # Docker Creds go into your Circle EnvVars Config
@@ -32,8 +32,8 @@ test:
 #     branch: develop
 #     commands:
 #       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-#       - docker tag d3vaint0ne/node-module-boilerplate d3vaint0ne/node-module-boilerplate:$CIRCLE_BRANCH
-#       - docker push d3vaint0ne/node-module-boilerplate
+#       - docker tag deviantjs/es7-babel-starter deviantjs/es7-babel-starter:$CIRCLE_BRANCH
+#       - docker push deviantjs/es7-babel-starter
 
 general:
   artifacts:
