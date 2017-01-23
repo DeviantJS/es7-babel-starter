@@ -26,9 +26,9 @@
     "scan:updates": "ncu",
     "setenv:dev": "npm config set production false",
     "setenv:prod": "npm config set production true",
-    "pre-release": "npm run setenv:prod && npm run clean && npm run build:dist && npm run lint && npm run scan:security && npm run test:ci:coverage && npm run report-coverage",
+    "prerelease": "npm run setenv:prod && npm run clean && npm run build:dist && npm run lint && npm run scan:security && npm run test:ci:coverage && npm run report-coverage",
     "release": "standard-version",
-    "post-release": "greenkeeper-postpublish && npm run setenv:dev"
+    "postrelease": "git push --follow-tags origin master && npm publish && greenkeeper-postpublish && npm run setenv:dev"
   },
   "repository": {
     "type": "git",
